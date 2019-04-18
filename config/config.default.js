@@ -23,6 +23,15 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
+  config.sequelize = {
+    dialect: 'mysql',
+    database: 'egg4fun',
+    host: 'localhost',
+    port: '3306',
+    username: 'root',
+    password: 'mysql',
+  };
+
   return {
     ...config,
     ...userConfig,
