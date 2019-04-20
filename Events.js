@@ -1,3 +1,5 @@
+use "strict";
+
 class Events {
     constructor() {
         this.map = {};
@@ -8,7 +10,7 @@ class Events {
     }
     emit(name, ...args) {
         this.map[name].forEach(fn => {
-            fn(...args)
-        })
+            fn(...args);
+        });
     }
 }
