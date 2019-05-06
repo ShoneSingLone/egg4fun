@@ -7,7 +7,7 @@ class HomeController extends Controller {
     const {
       ctx,
     } = this;
-    ctx.body = 'My first egg page';
+    ctx.body = 'ShoneSingLone';
   }
 }
 

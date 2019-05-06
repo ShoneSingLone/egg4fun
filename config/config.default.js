@@ -32,6 +32,21 @@ module.exports = appInfo => {
     password: 'mysql',
   };
 
+  config.mysql = {
+    // database configuration
+    client: {
+      user: 'root',
+      password: 'mysql',
+      database: 'egg4fun',
+      host: '127.0.0.1',
+      port: '3306',
+    },
+    // load into app, default is open
+    app: true,
+    // load into agent, default is close
+    agent: false,
+  };
+
   return {
     ...config,
     ...userConfig,
