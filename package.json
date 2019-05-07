@@ -38,9 +38,14 @@
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
-    "m:new": "sequelize migration:create",
-    "m:up": "sequelize db:migration",
-    "m:down": "sequelize db:migration:undo"
+    "s:up": "sequelize db:migration",
+    "s:down": "sequelize db:migration:undo",
+    "s:init": "sequelize init",
+    "s:i:c": "sequelize init:config",
+    "s:i:m": "sequelize init:migrations",
+    "s:model:g": "sequelize model:generate --attributes componenttype:String --name",
+    "s:m:c": "sequelize migration:create",
+    "s:m:g": "sequelize migration:generate"
   },
   "ci": {
     "version": "8"

@@ -1,12 +1,7 @@
 'use strict';
 
 /** @type Egg.EggPlugin */
-// exports.sequilize = {
-//   enable: true,
-//   package: 'egg-sequelize',
-// };
-
-exports.mysql = {
+exports.sequilize = {
   enable: true,
-  package: 'egg-mysql',
+  package: 'egg-sequelize',
 };
