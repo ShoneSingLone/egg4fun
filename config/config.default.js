@@ -32,6 +32,25 @@ module.exports = appInfo => {
     password: 'mysql',
   };
 
+  config.flash = {
+    key: Symbol.for('flash')
+  };
+  config.validator = {
+    open: 'zh-CN',
+    languages: {
+      'zh-CN': {
+        required: '必须填 %s 字段'
+      }
+    },
+    async formate(ctx, error) {
+      console.log(error)
+      ctx.type = 'json'
+      ctx.status = 400
+      ctx.body = error
+    }
+  }
+
+
   return {
     ...config,
     ...userConfig,

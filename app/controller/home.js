@@ -7,7 +7,9 @@ class HomeController extends Controller {
     const {
       ctx,
     } = this;
-    ctx.body = 'ShoneSingLone';
+    const r = use("app.schemas.signup");
+    ctx.type = "json";
+    ctx.body = `<h1>ShoneSingLone${JSON.stringify(r)}</h1>` ;
   }
 }
 
