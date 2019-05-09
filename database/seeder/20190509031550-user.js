@@ -15,12 +15,12 @@ module.exports = {
       }], {});
     */
     return queryInterface.bulkInsert('Users', [{
-      email: 'belovedyogurt@gmail.com',
-      password: utils.md5('000000'),
+      email: 'ShoneSingLone@gmail.com',
+      password: utils.md5('89757'),
       inviter_id: 0,
-      username: 'Yugo',
-      weixin: 'xxxx',
-      weibo: 'xxxx',
+      username: 'ShoneSingLone',
+      weixin: 'ShoneSingLone',
+      weibo: 'ShoneSingLone',
       receive_remote: 0,
       email_verifyed: 1,
       avatar: 'xxxx.jpg',

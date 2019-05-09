@@ -35,6 +35,13 @@ module.exports = appInfo => {
   config.flash = {
     key: Symbol.for('flash')
   };
+  
+  config.security = {
+    csrf: {
+      ignoreJSON: true
+    }
+  };
+
   config.validator = {
     open: 'zh-CN',
     languages: {

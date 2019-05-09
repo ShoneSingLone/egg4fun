@@ -4,6 +4,6 @@ const {
     globalBaseInitial
 } = require('./init')
 
-// globalBaseInitial(__dirname)
+globalBaseInitial(__dirname)
 
 module.exports = app => {}

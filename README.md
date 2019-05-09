@@ -9,8 +9,10 @@
 see [egg docs][egg] for more detail.
 
 ```bash
-npm i egg-msg-flash egg-y-validator ramda
+npm i egg-msg-flash egg-y-validator egg-security ramda chalk egg-security uuid bcrypt
 ```
+
+egg-y-validator
 
 ### Development
 
