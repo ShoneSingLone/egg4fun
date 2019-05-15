@@ -35,7 +35,7 @@ module.exports = appInfo => {
   config.flash = {
     key: Symbol.for('flash')
   };
-  
+
   config.security = {
     csrf: {
       ignoreJSON: true
@@ -49,7 +49,7 @@ module.exports = appInfo => {
         required: '必须填 %s 字段'
       }
     },
-    async formate(ctx, error) {
+    async formatter(ctx, error) {
       console.log(error)
       ctx.type = 'json'
       ctx.status = 400

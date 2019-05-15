@@ -1,7 +1,8 @@
 'use strict'
 
 const path = require('path')
-const R = require('ramda')
+const R = require('ramda');
+const chalk = require('chalk');
 
 const check = R.curry((obj, key) => {
     if (typeof obj[key] === 'undefined') {
@@ -25,6 +26,20 @@ function globalBaseInitial(baseDir) {
 
     if (notInGlobal('Controller')) {
         global.C = global.Controller = _use('app/controller/base')
+    }
+    /**
+     **带有行号的log
+     */
+    if (notInGlobal('l')) {
+        global.l = (...args) => {
+            try {
+                throw new Error();
+            } catch (error) {
+                var optionString = error.stack.split("\n")[2];
+                let regexMatch = optionString.match(/\((.*)\)/ig);
+                console.log.apply(console, [chalk.green(regexMatch[0]), "\n"].concat(args));
+            }
+        }
     }
 
     if (notInGlobal('Service')) {

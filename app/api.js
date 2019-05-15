@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = ctl => {
-  console.log("ctl", ctl);
+  l("ctl", ctl);
   return {
     post: {
       '/signup': ctl.user.signUp, // 注册

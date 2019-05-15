@@ -47,6 +47,7 @@ class User extends S {
     async create(user) {
         return await this._User.create(user);
     }
+
     /**
      * ? 待考虑
      * *将 Code 邀请码给 user_id 使用，并为 user_id 生成邀请码
@@ -55,7 +56,6 @@ class User extends S {
      * @return {{user: User, invitations: Invitation[]}} 用户与生成的邀请码
      * @memberof User
      */
-
     async invaitationToUser(code, user_id) {
         const invaitation = await this.checkInvitation(code);
         const user = await this._User.findById(user_id);
@@ -75,6 +75,7 @@ class User extends S {
             invitations
         }
     }
+
     async signIn() {
         const {
             eamil,
@@ -85,6 +86,7 @@ class User extends S {
         this.ctx.assert(user, 401, '没有找到该用户')
 
     }
+
     /**
      * * 注册逻辑
      * TODO: 通知邀请码所有者，user.id 成功使用了你的激活码
@@ -95,16 +97,14 @@ class User extends S {
     async signUp() {
         const body = this.ctx.request.body
         const invitation = await this.checkInvitation(body.code)
-        const user = await this._User.create(
-            R.pick(['username', 'password', 'email'], body)
-        )
+        const user = await this._User.create(R.pick(['username', 'password', 'email'], body));
         /* eslint-disable no-proto */
-        console.dir(user.__proto__)
-        console.dir(invitation.__proto__)
-        invitation.use_user_id = user.id
-        invitation.use_username = user.username
-        await invitation.save()
-        const generator_invitation = await this.generatorInvitation(user.id, 5)
+        console.dir(user.__proto__);
+        console.dir(invitation.__proto__);
+        invitation.use_user_id = user.id;
+        invitation.use_username = user.username;
+        await invitation.save();
+        const generator_invitation = await this.generatorInvitation(user.id, 5);
         return {
             user,
             generator_invitation

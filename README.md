@@ -12,6 +12,9 @@ see [egg docs][egg] for more detail.
 npm i egg-msg-flash egg-y-validator egg-security ramda chalk egg-security uuid bcrypt
 ```
 
+`"egg-y-validator": "file:./local_modules/egg-y-validator",`
+
+
 egg-y-validator
 
 ### Development
