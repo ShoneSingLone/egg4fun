@@ -1,0 +1,70 @@
+{
+  "name": "egg4fun",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "egg": {
+    "declarations": true
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "debug": "^4.1.1",
+    "egg": "^2.15.1",
+    "egg-msg-flash": "^1.0.1",
+    "egg-mysql": "^3.0.0",
+    "egg-scripts": "^2.11.0",
+    "egg-sequelize": "^4.3.1",
+    "egg-y-validator": "file:./local_modules/egg-y-validator",
+    "mysql2": "^1.6.5",
+    "ramda": "^0.26.1",
+    "sequelize-auto": "^0.4.29",
+    "sequelize-cli": "^5.4.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "chalk": "^2.4.2",
+    "egg-bin": "^4.11.0",
+    "egg-ci": "^1.11.0",
+    "egg-mock": "^3.21.0",
+    "eslint": "^5.16.0",
+    "eslint-config-egg": "^7.4.1",
+    "eslint-config-google": "^0.12.0",
+    "webstorm-disable-index": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start --daemon --title=egg-server-egg4fun",
+    "stop": "egg-scripts stop --title=egg-server-egg4fun",
+    "dev": "egg-bin dev",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod",
+    "s:db:up": "sequelize db:migrate",
+    "s:db:down": "sequelize db:migrate:undo",
+    "s:db:s:all": "sequelize db:seed:all",
+    "s:init": "sequelize init",
+    "s:i:c": "sequelize init:config",
+    "s:i:m": "sequelize init:migrations",
+    "s:model:g": "sequelize model:generate --attributes componenttype:String --name",
+    "s:m:c": "sequelize migration:create",
+    "s:m:g": "sequelize migration:generate",
+    "s:s:g": "sequelize seed:generate"
+  },
+  "ci": {
+    "version": "8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@104.168.102.215:egg4fun.git"
+  },
+  "author": "ShoneSingLone",
+  "license": "MIT"
+}
