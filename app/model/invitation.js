@@ -5,10 +5,6 @@ module.exports = app => {
     STRING,
     INTEGER
   } = app.Sequelize;
-  l("app start:\n")
-  l(app.model.define);
-  l("app end:\n")
-
   const Invitation = app.model.define('Invitation', {
     code: STRING(8),
     user_id: INTEGER,
