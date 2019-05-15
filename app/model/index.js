@@ -5,7 +5,8 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config.json')[env];
+const DatabasePath = path.resolve("D:\\PrivateConfings\\egg4fun\\database.js");
+const config = require(DatabasePath)[env];
 const db = {};
 
 let sequelize;
@@ -22,6 +23,7 @@ fs
   })
   .forEach(file => {
     const model = sequelize['import'](path.join(__dirname, file));
+    l("model", model);
     db[model.name] = model;
   });
 

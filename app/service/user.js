@@ -3,6 +3,7 @@ const R = require('ramda')
 class User extends S {
     constructor(ctx) {
         super(ctx)
+        l("this.ctx.model", ctx, this.ctx.model);
         this._User = this.ctx.model.User
         this._Invitation = this.ctx.model.Invitation
         this.where = this.ctx.helper.where
@@ -14,6 +15,10 @@ class User extends S {
      * @memberof User
      */
     async checkInvitation(code) {
+        const {
+            ctx
+        } = this;
+        l("ctx.model", ctx.model);
         const invitation = await this._Invitation.find(this.where({
             code
         }))

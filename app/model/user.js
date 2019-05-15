@@ -1,7 +1,6 @@
 'use strict'
 
-const bcrypt = require('bcrypt')
-
+const bcrypt = require('bcrypt');
 module.exports = app => {
   const {
     INTEGER,

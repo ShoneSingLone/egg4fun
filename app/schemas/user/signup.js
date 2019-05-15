@@ -36,24 +36,26 @@ module.exports = {
     message: '用户邮箱有误'
   },
   code: [{
-    required: true,
-    message: '必须填写邀请码'
-  }, {
-    validator: (ctx) => {
-      return async function (_, value, cb) {
-        const invitation = await ctx.app.model.Invitation.find({
-          where: {
-            code: value
-          }
-        })
-        if (!invitation) {
-          return cb([{
-            message: '没有找到该邀请码',
-            field: 'code'
-          }])
-        }
-        return cb()
-      }
-    }
-  }]
+      required: true,
+      message: '必须填写邀请码'
+    },
+    /* {
+         validator: (ctx) => {
+         return async function (_, value, cb) {
+           const invitation = await ctx.app.model.Invitation.find({
+             where: {
+               code: value
+             }
+           })
+           if (!invitation) {
+             return cb([{
+               message: '没有找到该邀请码',
+               field: 'code'
+             }])
+           }
+           return cb()
+         }
+       }
+     } */
+  ]
 }

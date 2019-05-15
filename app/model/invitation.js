@@ -4,7 +4,11 @@ module.exports = app => {
   const {
     STRING,
     INTEGER
-  } = app.Sequelize
+  } = app.Sequelize;
+  l("app start:\n")
+  l(app.model.define);
+  l("app end:\n")
+
   const Invitation = app.model.define('Invitation', {
     code: STRING(8),
     user_id: INTEGER,

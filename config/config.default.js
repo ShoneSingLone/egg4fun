@@ -30,6 +30,7 @@ module.exports = appInfo => {
     port: '3306',
     username: 'root',
     password: 'mysql',
+    exclude: 'index.js'
   };
 
   config.flash = {
