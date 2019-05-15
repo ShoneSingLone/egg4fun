@@ -1,4 +1,5 @@
 /* 用户登录 */
+
 module.exports = {
   email: {
     type: 'email',
