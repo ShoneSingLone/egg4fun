@@ -52,6 +52,12 @@ function globalBaseInitial(baseDir) {
             return _use(dir)
         }
     }
+
+    /* 环境变量判断 */
+    if (notInGlobal('DEV')) {
+        global.DEV = process.env.NODE_ENV !== 'production'
+    }
+
 }
 
 module.exports = {

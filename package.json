@@ -10,16 +10,21 @@
     "bcrypt": "^3.0.6",
     "debug": "^4.1.1",
     "egg": "^2.15.1",
+    "egg-jwt": "^3.1.6",
     "egg-msg-flash": "^1.0.1",
     "egg-mysql": "^3.0.0",
+    "egg-passport": "^2.0.1",
+    "egg-passport-local": "^1.2.1",
     "egg-scripts": "^2.11.0",
     "egg-sequelize": "^4.3.1",
-    "egg-y-validator": "file:./local_modules/egg-y-validator",
+    "egg-y-validator": "^1.3.1",
+    "koa-is-json": "^1.0.0",
     "mysql2": "^1.6.5",
     "ramda": "^0.26.1",
     "sequelize-auto": "^0.4.29",
     "sequelize-cli": "^5.4.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -37,9 +42,9 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-egg4fun",
+    "product": "egg-scripts start --daemon --title=egg-server-egg4fun",
     "stop": "egg-scripts stop --title=egg-server-egg4fun",
-    "dev": "egg-bin dev",
+    "start": "egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",

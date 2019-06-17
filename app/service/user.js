@@ -17,7 +17,7 @@ class User extends S {
         const {
             ctx
         } = this;
-        const invitation = await this._Invitation.find(this.where({
+        const invitation = await this._Invitation.findOne(this.where({
             code
         }))
         if (!invitation || invitation.use_user_id) {

@@ -18,6 +18,7 @@ class User extends C {
         l("res", res, res === ctx.request.body);
         ctx.body = '登陆成功';
     }
+
     /**
      * @description 注册
      * @memberof User

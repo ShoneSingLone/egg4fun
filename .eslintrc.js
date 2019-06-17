@@ -18,6 +18,7 @@ module.exports = {
         "C": true,
         "check": true,
         "S": true,
-        "Service": true
+        "Service": true,
+        "DEV": true
     }
 };
