@@ -9,7 +9,21 @@
 see [egg docs][egg] for more detail.
 
 ```bash
-npm i egg-msg-flash egg-y-validator egg-security ramda chalk egg-security uuid bcrypt egg-passport egg-passport-local egg-jwt koa-is-json zlib
+npm i 
+egg-msg-flash 
+egg-y-validator 
+egg-security 
+ramda 
+chalk
+egg-security
+uuid
+bcrypt
+egg-passport
+egg-passport-local
+egg-jwt
+koa-is-json zlib
+egg-sequelize 
+mysql2
 ```
 
 `"egg-y-validator": "file:./local_modules/egg-y-validator",`

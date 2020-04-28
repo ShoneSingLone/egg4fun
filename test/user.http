@@ -1,0 +1,14 @@
+
+
+#saf
+ GET http://localhost:7001/users HTTP/1.1
+
+# asd
+
+GET http://localhost:7001/users/create HTTP/1.1
+content-type: application/json
+
+{
+    "name":"shone",
+    "age":15
+}

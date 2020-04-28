@@ -1,28 +1,11 @@
 {
   "name": "egg4fun",
+  "sourceType": "module",
   "version": "1.0.0",
   "description": "my appserver",
   "private": true,
-  "egg": {
-    "declarations": true
-  },
-  "dependencies": {
-    "egg": "^2.15.1",
-    "egg-scripts": "^2.11.0"
-  },
-  "devDependencies": {
-    "autod": "^3.0.1",
-    "autod-egg": "^1.1.0",
-    "egg-bin": "^4.11.0",
-    "egg-ci": "^1.11.0",
-    "egg-mock": "^3.21.0",
-    "eslint": "^5.13.0",
-    "eslint-config-egg": "^7.1.0"
-  },
-  "engines": {
-    "node": ">=10.0.0"
-  },
   "scripts": {
+    "migrate": "sequelize db:migrate",
     "start": "egg-scripts start --daemon --title=egg-server-egg4fun",
     "stop": "egg-scripts stop --title=egg-server-egg4fun",
     "dev": "egg-bin dev",
@@ -33,6 +16,30 @@
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
     "autod": "autod"
+  },
+  "egg": {
+    "declarations": true
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "egg": "^2.15.1",
+    "egg-scripts": "^2.11.0",
+    "egg-sequelize": "^5.2.1",
+    "mysql2": "^2.1.0"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg-bin": "^4.11.0",
+    "egg-ci": "^1.11.0",
+    "egg-mock": "^3.21.0",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0",
+    "factory-girl": "^5.0.4",
+    "sequelize-cli": "^5.5.1"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   },
   "ci": {
     "version": "10"
