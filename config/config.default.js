@@ -14,7 +14,6 @@ const env = key => {
 };
 console.log('env("TEST")', env('TEST'), env('NODE_ENV '), res);
 
-
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -23,11 +22,10 @@ module.exports = appInfo => {
    * built-in config
    * @type {Egg.EggAppConfig}
    **/
-  const config = exports = {};
+  const config = (exports = {});
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + env('SESSION_SECRET');
-
 
   // add your middleware config here
   config.middleware = [];
@@ -50,6 +48,7 @@ module.exports = appInfo => {
     database: 'egg4fun',
     password: env('MYSQL_PWD'),
   };
+
   config.mysql = {
     // 单数据库信息配置
     client: {
@@ -68,6 +67,19 @@ module.exports = appInfo => {
     app: true,
     // 是否加载到 agent 上，默认关闭
     agent: false,
+  };
+
+  config.view = {
+    mapping: {
+      '.ejs': 'ejs',
+    },
+  };
+
+  /* CSRF */
+  config.security = {
+    csrf: {
+      ignoreJSON: true,
+    },
   };
 
   return {

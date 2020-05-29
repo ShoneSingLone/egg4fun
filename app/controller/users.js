@@ -10,8 +10,33 @@ function toInt(str) {
 class UserController extends Controller {
   async index() {
     const ctx = this.ctx;
-    const query = { limit: toInt(ctx.query.limit), offset: toInt(ctx.query.offset) };
+    const query = {
+      limit: toInt(ctx.query.limit),
+      offset: toInt(ctx.query.offset),
+    };
     ctx.body = await ctx.model.User.findAll(query);
+  }
+
+  async signup() {
+    const {
+      ctx,
+    } = this;
+    await ctx.verify('user.signup', 'body');
+    const json = await ctx.service.user.signup();
+    ctx.body = '注册' + json;
+  }
+
+  /*
+     * @description 登录
+     * @memberof User
+     * */
+  async signin() {
+    const {
+      ctx,
+    } = this;
+    await ctx.verify('user.signup', 'body');
+    const json = await ctx.service.user.signup();
+    ctx.body = '登录';
   }
 
   async show() {
@@ -21,8 +46,14 @@ class UserController extends Controller {
 
   async create() {
     const ctx = this.ctx;
-    const { name, age } = ctx.request.body;
-    const user = await ctx.model.User.create({ name, age });
+    const {
+      name,
+      age,
+    } = ctx.request.body;
+    const user = await ctx.model.User.create({
+      name,
+      age,
+    });
     ctx.status = 201;
     ctx.body = user;
   }
@@ -36,8 +67,14 @@ class UserController extends Controller {
       return;
     }
 
-    const { name, age } = ctx.request.body;
-    await user.update({ name, age });
+    const {
+      name,
+      age,
+    } = ctx.request.body;
+    await user.update({
+      name,
+      age,
+    });
     ctx.body = user;
   }
 

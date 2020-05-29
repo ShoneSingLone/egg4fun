@@ -47,6 +47,16 @@ $ npm start
 $ npm stop
 ```
 
+
+### 隐藏配置信息
+通过dotenv 从配置信息egg4fun_env.confgs里面读取（为了安全，文件位置不在工程目录内）
+
+- MYSQL_PWD
+- MYSQL_USER
+- SESSION_SECRET
+
+
+
 ### npm scripts
 
 - Use `npm run lint` to check code style.
@@ -116,6 +126,8 @@ npm i egg-mysql --save
 
 ## sequelize
 
+sequelize init =>config=>.gitignore 
+
 ```bash
   sequelize db:migrate                        Run pending migrations
   sequelize db:migrate:schema:timestamps:add  Update migration table to have timestamps
@@ -142,6 +154,12 @@ npm i egg-mysql --save
 
 [plugin](https://eggjs.org/zh-cn/advanced/plugin.html)
 
+# CSRF
+[egg-security](https://eggjs.org/zh-cn/basics/middleware.html)
+[security](https://eggjs.org/zh-cn/core/security.html)
+
+
 # 搜索过的问题
 
 [controller not exists](https://github.com/eggjs/egg/issues/2350):主要是在router.js里写错了controller的名字
+[app.model.define is not a function](https://github.com/eggjs/egg/issues/3306) 使用`sequelize init`之后的问题

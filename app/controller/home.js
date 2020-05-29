@@ -21,7 +21,8 @@ class HomeController extends Controller {
       ctx,
     } = this;
     const res = await this.app.mysql.query('select * from users');
-    console.log('res', res);
+    console.table(res);
+    _.forEach(res, d => delete d.password);
     ctx.body = 'hi, someone ' + _.reduce(res[0], (target, value, key) => target + `\n${key}:${value}`, '');
   }
 
