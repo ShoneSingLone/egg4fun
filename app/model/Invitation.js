@@ -26,7 +26,7 @@ module.exports = app => {
   // ? FIXME: 待优化
   Invitation.beforeCreate(async (instance, options) => {
     const generatorCode = async code => {
-      code = uuid().split('-')[0] + Date.now();
+      code = uuid().split('-')[0];
       if (await Invitation.exits(code)) {
         return await generatorCode();
       }

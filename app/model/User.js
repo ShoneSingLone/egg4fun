@@ -7,6 +7,7 @@ module.exports = app => {
     INTEGER,
     DATE,
     TINYINT,
+    NOW,
   } = app.Sequelize;
 
   const User = app.model.define('user', {
@@ -29,10 +30,12 @@ module.exports = app => {
     created_at: {
       allowNull: false,
       type: DATE,
+      defaultValue: NOW,
     },
     updated_at: {
       allowNull: false,
       type: DATE,
+      defaultValue: NOW,
     },
   });
 

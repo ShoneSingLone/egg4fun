@@ -1,6 +1,12 @@
+'use strict';
 // app/extend/context.js
+const verify = require('./context/verify').verify;
+const RESPONSE_CODE = require('./types.js');
 module.exports = {
-    foo(param) {
-      // this 就是 ctx 对象，在其中可以调用 ctx 上的其他方法，或访问属性
-    },
-  };
+  isIOS() {
+    const iosReg = /iphone|ipad|ipod/i;
+    return iosReg.test(this.get('user-agent'));
+  },
+  verify,
+  RESPONSE_CODE,
+};

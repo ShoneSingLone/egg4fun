@@ -1,8 +1,32 @@
-// app/extend/helper.js
+'use strict';
+
 module.exports = {
-    foo(param) {
-      // this 是 helper 对象，在其中可以调用其他 helper 方法
-      // this.ctx => context 对象
-      // this.app => application 对象
+  where(obj, ...args) {
+    return Object.assign({
+      where: obj,
     },
-  };
+    ...args
+    );
+  },
+  throw(code, type, message) {
+    this.ctx.status = code;
+    this.ctx.body = {
+      error: type,
+      message,
+    };
+    throw new Error();
+  },
+  range(start, end) {
+    const _range = function* name(start, end) {
+      let index = start;
+      if (typeof end === 'undefined') {
+        end = start;
+        index = 0;
+      }
+      while (index < end) {
+        yield index++;
+      }
+    };
+    return Array.from(_range(start, end));
+  },
+};

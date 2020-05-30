@@ -159,7 +159,11 @@ sequelize init =>config=>.gitignore
 [security](https://eggjs.org/zh-cn/core/security.html)
 
 
+
+
+
 # 搜索过的问题
 
 [controller not exists](https://github.com/eggjs/egg/issues/2350):主要是在router.js里写错了controller的名字
 [app.model.define is not a function](https://github.com/eggjs/egg/issues/3306) 使用`sequelize init`之后的问题
+

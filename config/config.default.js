@@ -12,7 +12,6 @@ const res = dotenv.config({
 const env = key => {
   return process.env[key];
 };
-console.log('env("TEST")', env('TEST'), env('NODE_ENV '), res);
 
 /**
  * @param {Egg.EggAppInfo} appInfo app info
@@ -80,6 +79,23 @@ module.exports = appInfo => {
     csrf: {
       ignoreJSON: true,
     },
+  };
+
+  config.validator = {
+    open: async () => 'zh-CN',
+    // or
+    // open: 'zh-CN',
+    languages: {
+      'zh-CN': {
+        required: '%s 必填',
+      },
+    },
+    async formatter(ctx, error) {
+      ctx.type = 'json';
+      ctx.status = 400;
+      ctx.body = error;
+    },
+
   };
 
   return {

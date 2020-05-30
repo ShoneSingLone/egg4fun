@@ -1,0 +1,1 @@
+- [ ] User pwd 保存之前需要加密=>bcrypt 自动hash密码 beforeSave hooks

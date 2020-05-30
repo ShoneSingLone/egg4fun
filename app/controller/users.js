@@ -1,5 +1,6 @@
 'use strict';
 const Controller = require('egg').Controller;
+const _ = require('lodash');
 
 function toInt(str) {
   if (typeof str === 'number') return str;
@@ -22,20 +23,22 @@ class UserController extends Controller {
       ctx,
     } = this;
     await ctx.verify('user.signup', 'body');
-    const json = await ctx.service.user.signup();
-    ctx.body = '注册' + json;
+    let json = await ctx.service.users.signUp();
+    json = _.pick(json, [ 'user_id', 'use_user_id', 'use_username', 'code' ]);
+    ctx.body = JSON.stringify(json);
   }
 
   /*
-     * @description 登录
-     * @memberof User
-     * */
+   * @description 登录
+   * @memberof User
+   * */
   async signin() {
     const {
       ctx,
     } = this;
-    await ctx.verify('user.signup', 'body');
+    await ctx.verify('user.signui', 'body');
     const json = await ctx.service.user.signup();
+
     ctx.body = '登录';
   }
 

@@ -21,6 +21,7 @@
     "declarations": true
   },
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "dotenv": "^8.2.0",
     "egg": "^2.15.1",
     "egg-mysql": "^3.0.0",
@@ -44,7 +45,10 @@
     "eslint": "^5.13.0",
     "eslint-config-egg": "^7.1.0",
     "factory-girl": "^5.0.4",
-    "sequelize-cli": "^5.5.1"
+    "sequelize-cli": "^5.5.1",
+    "conventional-changelog-eslint": "^3.0.0",
+    "egg": "^2.8.1",
+    "np": "^5.0.3"
   },
   "engines": {
     "node": ">=10.0.0"

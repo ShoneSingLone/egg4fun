@@ -1,4 +1,5 @@
 'use strict';
+const path = require('path');
 
 /** @type Egg.EggPlugin */
 module.exports = {
