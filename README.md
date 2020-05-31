@@ -167,3 +167,8 @@ sequelize init =>config=>.gitignore
 [controller not exists](https://github.com/eggjs/egg/issues/2350):主要是在router.js里写错了controller的名字
 [app.model.define is not a function](https://github.com/eggjs/egg/issues/3306) 使用`sequelize init`之后的问题
 
+# 登录服务
+`npm i egg-passport egg-passport-local egg-jwt -S`
+
+session_id 存储在 Cookie 中
+Token 用于前后端分离

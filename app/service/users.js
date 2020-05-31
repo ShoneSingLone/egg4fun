@@ -162,6 +162,8 @@ class UsersService extends Service {
     if (invitation.use_user_id) {
       return ctx.helper.throw(400, ctx.RESPONSE_CODE.verifyForm, '邀请码已被使用');
     }
+    debugger;
+    body.inviter_id = invitation.user_id;
     const user = await this._User.create(body);
     /* eslint-disable no-proto */
     invitation.use_user_id = user.id;

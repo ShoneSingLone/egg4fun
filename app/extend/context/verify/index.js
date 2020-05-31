@@ -5,24 +5,23 @@ const {
   sep: s,
 } = require('path');
 const glob = require('fast-glob');
+/* 支持 yaml、yml、toml、tml、json、js 文件的自动导入 support yaml、yml、toml、tml、json、js file import。https://www.npmjs.com/package/m-import */
 const mi = require('m-import').default;
 const R = require('ramda');
-const camelCase = require('lodash').camelCase;
-const clone = require('clone');
 const slash = require('slash');
 const debug = require('debug')('egg-y-validator');
 const CACHE = Symbol.for('egg-y-validator');
 const VALIDATOR = Symbol.for('egg-y-validator:getValidator');
 const GETFIELD = Symbol.for('egg-y-validator:getField');
 const _ = require('lodash');
+const camelCase = _.camelCase;
+const clone = _.clone;
 
 const {
   assocPath,
   compose,
   curry,
 } = R;
-
-let CTX;
 
 const delStr = curry((delStr, souStr) => {
   if (Array.isArray(delStr)) {
@@ -31,34 +30,31 @@ const delStr = curry((delStr, souStr) => {
   return souStr.replace(delStr, '');
 });
 //* 对所有的函数传递 ctx
-const invokeFn = (obj, ctx) => {
-  const forEach = (value, index) => {
-    if (R.type(value) === 'Array') {
-      invokeFn(value, ctx);
-    }
-    if (R.type(value) === 'Object' && R.has('validator', value)) {
-      value.validator = value.validator(ctx);
-    }
-    if (index === 'validator') {
-      obj[index] = obj[index](ctx);
-    }
-  };
-  if (R.type(obj) === 'Array') {
-    R.forEach(forEach, obj);
+const invokeFn = (obj, ctx) => _.forEach(obj, (value, index) => {
+  if (_.isArray((value))) {
+    invokeFn(value, ctx);
   }
-  if (R.type(obj) === 'Object') {
-    R.forEachObjIndexed(forEach, obj);
+  if (_.isObject((value)) && _.isFunction(value.validator)) {
+    try {
+      value.validator = value.validator && value.validator(ctx);
+    } catch (error) {
+      console.error(error);
+    }
   }
-};
+  if (index === 'validator') {
+    obj[index] = obj[index](ctx);
+  }
+});
+
 const Utils = {
   //* 拿到验证规则
-  getValidatorRules(path) {
+  getValidatorRules(path, CTX) {
     let rules;
-    if (R.type(path) === 'Object') {
+    if (_.isObject((path))) {
       rules = path;
     } else {
       path = path.split('.');
-      rules = R.path(path, Utils.docs);
+      rules = R.path(path, Utils.docs(CTX));
       rules = R.defaultTo(rules, R.prop('index', rules));
       rules = clone(rules);
       invokeFn(rules, CTX);
@@ -66,7 +62,7 @@ const Utils = {
     return rules;
   },
   //* 需要验证的对象
-  async [GETFIELD](type) {
+  async [GETFIELD](type, CTX) {
     if (compose(R.equals('AsyncFunction'), R.type)(type)) {
       return await type();
     }
@@ -82,7 +78,7 @@ const Utils = {
       ],
     ])(type);
   },
-  async [VALIDATOR](config) {
+  async [VALIDATOR](config, CTX) {
     if (CTX.app.config.validator.superstruct) {
       const {
         superstruct,
@@ -114,7 +110,7 @@ const Utils = {
     return validator;
   },
 
-  loadDocs(reload) {
+  loadDocs(reload, CTX) {
     if (!reload && Utils[CACHE]) {
       return Utils[CACHE];
     }
@@ -149,8 +145,8 @@ const Utils = {
     paths.forEach(ForEach);
     return schemas;
   },
-  get docs() {
-    return Utils.loadDocs(false);
+  docs(CTX) {
+    return Utils.loadDocs(false, CTX);
   },
 };
 
@@ -158,10 +154,10 @@ exports.verify =
   //* 拿到验证器
   /* 传入校验路径获取校验对象 */
   async function verify(path, type) {
-    CTX = this;
-    const rules = Utils.getValidatorRules(path);
-    const validator = await Utils[VALIDATOR](rules);
-    const fields = await Utils[GETFIELD](type);
+    const CTX = this;
+    const rules = Utils.getValidatorRules(path, CTX);
+    const validator = await Utils[VALIDATOR](rules, CTX);
+    const fields = await Utils[GETFIELD](type, CTX);
     debug('rules %j', rules);
     debug('fields %o', fields);
     const validateRes = await new Promise(resolve => validator.validate(fields, errors => resolve(errors || fields)));

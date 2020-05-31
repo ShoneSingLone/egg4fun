@@ -23,4 +23,16 @@ module.exports = {
     enable: true,
     package: 'egg-sequelize',
   },
+  passport: {
+    enable: false,
+    package: 'egg-passport',
+  },
+  jwt: {
+    enable: false,
+    package: 'egg-jwt',
+  },
+  passportLocal: {
+    enable: false,
+    package: 'egg-passport-local',
+  },
 };

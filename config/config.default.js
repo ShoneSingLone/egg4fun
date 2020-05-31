@@ -4,6 +4,9 @@
 
 const dotenv = require('dotenv');
 const path = require('path');
+const chalk = require('chalk');
+
+
 /* ./egg4fun_env.configs */
 const res = dotenv.config({
   path: path.resolve(__dirname, '../../egg4fun_env.configs'),
@@ -97,6 +100,40 @@ module.exports = appInfo => {
     },
 
   };
+
+
+  config.jwt = {
+    secret: env('JWT_SECRET'),
+    enable: true,
+    // ignore: [ /\/passport/i, /\/api/ ],
+    ignore(ctx) {
+      // return true
+      // const regs = [/^\/api\/v1/gi];
+      const paths = [
+        '/api/v1/signin',
+        '/api/v1/signup',
+        '/api/v1/email/verify',
+        '/api/v1/email/send',
+        '/favicon.ico',
+        '/robots.txt',
+      ];
+
+      if (paths.same(ctx.path)) {
+        const tip = `${chalk.yellow('[ JWT ]')} --> ${chalk.green(ctx.path)
+        }`;
+        console.log(tip);
+        return true;
+      }
+      return false;
+    },
+
+  };
+
+  config.passportLocal = {
+    usernameField: 'email',
+    passwordField: 'password',
+  };
+
 
   return {
     ...config,
