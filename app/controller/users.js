@@ -23,9 +23,19 @@ class UserController extends Controller {
       ctx,
     } = this;
     await ctx.verify('user.signup', 'body');
-    let json = await ctx.service.users.signUp();
-    json = _.pick(json, [ 'user_id', 'use_user_id', 'use_username', 'code' ]);
-    ctx.body = JSON.stringify(json);
+    const json = await ctx.service.users.signUp();
+    json.user = _.pick(json.user, [
+      'email',
+      'email_verifyed',
+      'isNewRecord',
+      'receive_remote',
+      'updated_at',
+      'updatedAt',
+      'username',
+      'weibo',
+      'weixin',
+    ]);
+    ctx.helper.apiOk(json);
   }
 
   /*

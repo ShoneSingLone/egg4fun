@@ -1,6 +1,6 @@
 # egg4fun
 
-
+[Node.js实战：使用Egg.js+Vue.js+Docker构建渐进式、可持续集成与交付应用](https://item.jd.com/12424639.html)作者人很好，思路也比较开阔，但是我觉得这本书写得就有点天马行空，信马由缰了。
 
 ## QuickStart
 

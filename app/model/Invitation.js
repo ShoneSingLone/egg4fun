@@ -4,7 +4,9 @@ module.exports = app => {
   const { STRING, INTEGER } = app.Sequelize;
   const Invitation = app.model.define('Invitation', {
     code: STRING(8),
+    /* 提供者 */
     user_id: INTEGER,
+    /* 使用者 */
     use_user_id: INTEGER,
     use_username: STRING(40),
   });

@@ -6,11 +6,10 @@ module.exports = () => {
       await next();
     } catch (err) {
       // 所有的异常都在 app 上触发一个 error 事件，框架会记录一条错误日志
-      ctx.app.emit('error', err, ctx);
-
       const status = err.status || ctx.status === 400 ? 400 : 500;
       // 生产环境时 500 错误的详细错误内容不返回给客户端，因为可能包含敏感信息
       if (status === 500) {
+        ctx.app.emit('error', err, ctx);
         if (ctx.app.config.env === 'prod') {
           ctx.body = {
             error: 'Internal Server Error',

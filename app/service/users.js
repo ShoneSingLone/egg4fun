@@ -153,12 +153,15 @@ class UsersService extends Service {
    * @memberof {User}
    */
   async signUp() {
-    const body = this.ctx.request.body;
+    const ctx = this.ctx;
+    const body = ctx.request.body;
     const invitation = await this.checkInvitation(body.code);
-    if (!invitation || invitation.use_user_id) {
-      return this.ctx.helper.throw(400, 'code', '无效的邀请码');
+    if (!invitation) {
+      return ctx.helper.throw(400, ctx.RESPONSE_CODE.verifyForm, '无效的邀请码');
     }
-    console.log('invitation', invitation);
+    if (invitation.use_user_id) {
+      return ctx.helper.throw(400, ctx.RESPONSE_CODE.verifyForm, '邀请码已被使用');
+    }
     const user = await this._User.create(body);
     /* eslint-disable no-proto */
     invitation.use_user_id = user.id;

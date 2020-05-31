@@ -16,6 +16,10 @@ module.exports = {
     };
     throw new Error();
   },
+  apiOk(data) {
+    this.ctx.status = 200;
+    this.ctx.body = data;
+  },
   range(start, end) {
     const _range = function* name(start, end) {
       let index = start;
