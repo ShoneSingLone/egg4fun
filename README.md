@@ -145,3 +145,7 @@ npm i egg-mysql --save
 # 搜索过的问题
 
 [controller not exists](https://github.com/eggjs/egg/issues/2350):主要是在router.js里写错了controller的名字
+
+## 模板渲染
+
+- [view](https://eggjs.org/zh-cn/core/view.html)

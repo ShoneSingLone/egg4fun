@@ -70,6 +70,32 @@ module.exports = appInfo => {
     agent: false,
   };
 
+  config.passportLocal = {
+    usernameField: 'email',
+    passwordField: 'password',
+  };
+
+
+  config.jwt = {
+    secret: env('JWT_SECRET'),
+    enable: true,
+    // ignore: [/\/passport/i, /\/api/, /\/admin/, /.*\.(js|css|map|jpg|png|ico)/]
+    ignore(ctx) {
+      // return true;
+      // const regs = [ /^\/api\/v1/gi ];
+      const paths = [
+        '/api/v1/signin',
+        '/api/v1/signup',
+        '/api/v1/email/verify',
+        '/api/v1/email/send',
+        '/favicon.ico',
+        '/robots.txt',
+      ];
+
+      return paths.indexOf(ctx.path) > -1;
+    },
+  };
+
   return {
     ...config,
     ...userConfig,
