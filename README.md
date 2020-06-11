@@ -1,6 +1,6 @@
 # egg4fun
 
-
+[Node.js实战：使用Egg.js+Vue.js+Docker构建渐进式、可持续集成与交付应用](https://item.jd.com/12424639.html)作者人很好，思路也比较开阔，但是我觉得这本书写得就有点天马行空，信马由缰了。
 
 ## QuickStart
 
@@ -46,6 +46,16 @@ $ open http://localhost:7001/
 $ npm start
 $ npm stop
 ```
+
+
+### 隐藏配置信息
+通过dotenv 从配置信息egg4fun_env.confgs里面读取（为了安全，文件位置不在工程目录内）
+
+- MYSQL_PWD
+- MYSQL_USER
+- SESSION_SECRET
+
+
 
 ### npm scripts
 
@@ -116,6 +126,8 @@ npm i egg-mysql --save
 
 ## sequelize
 
+sequelize init =>config=>.gitignore 
+
 ```bash
   sequelize db:migrate                        Run pending migrations
   sequelize db:migrate:schema:timestamps:add  Update migration table to have timestamps
@@ -142,10 +154,21 @@ npm i egg-mysql --save
 
 [plugin](https://eggjs.org/zh-cn/advanced/plugin.html)
 
+# CSRF
+[egg-security](https://eggjs.org/zh-cn/basics/middleware.html)
+[security](https://eggjs.org/zh-cn/core/security.html)
+
+
+
+
+
 # 搜索过的问题
 
 [controller not exists](https://github.com/eggjs/egg/issues/2350):主要是在router.js里写错了controller的名字
+[app.model.define is not a function](https://github.com/eggjs/egg/issues/3306) 使用`sequelize init`之后的问题
 
-## 模板渲染
+# 登录服务
+`npm i egg-passport egg-passport-local egg-jwt -S`
 
-- [view](https://eggjs.org/zh-cn/core/view.html)
+session_id 存储在 Cookie 中
+Token 用于前后端分离

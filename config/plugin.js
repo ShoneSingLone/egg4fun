@@ -1,4 +1,5 @@
 'use strict';
+const path = require('path');
 
 /** @type Egg.EggPlugin */
 module.exports = {
@@ -6,6 +7,10 @@ module.exports = {
   // static: {
   //   enable: true,
   // }
+  ejs: {
+    enable: true,
+    package: 'egg-view-ejs',
+  },
   validate: {
     enable: true,
     package: 'egg-validate',
